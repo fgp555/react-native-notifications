@@ -1,0 +1,41 @@
+### test store
+# @expoPushToken=ExponentPushToken[eXr4BILBO6_po3YpyG2TT5]
+### transpaservic
+@expoPushToken=ExponentPushToken[jHADoEOk5yKKn3sK3sJaUd]
+
+###
+GET http://localhost:3000/api
+
+###
+GET http://192.168.18.21:3000/api/devices
+
+###
+POST http://192.168.18.21:3000/api/devices/register
+Content-Type: application/json
+
+{
+    "userId": "USER_ID",
+    "expoPushToken": "{{expoPushToken}}"
+}
+
+###
+POST http://localhost:3000/api/notifications/sendPushNotification
+Content-Type: application/json
+
+{
+    "to": ["{{expoPushToken}}"]
+}
+
+###
+POST https://exp.host/--/api/v2/push/send
+Content-Type: application/json
+
+{
+    "to": "{{expoPushToken}}",
+    "sound": "default",
+    "title": "Hola!",
+    "body": "Esta es una notificación de prueba.",
+    "data": {
+        "chatId": "123"
+    }
+}
